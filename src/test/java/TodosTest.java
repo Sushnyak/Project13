@@ -97,4 +97,38 @@ public class TodosTest {
 
     }
 
+    @Test
+    public void testSearch3() {
+        SimpleTask simpleTask = new SimpleTask(0, "4");
+
+        String[] subtasks = { "1", "2", "3" };
+        Epic epic = new Epic(1, subtasks);
+
+        Meeting meeting = new Meeting(
+                2,
+                "1",
+                "2",
+                "3"
+        );
+
+        Meeting meeting1 = new Meeting(
+                3,
+                "1",
+                "2",
+                "3"
+        );
+
+        Todos todos = new Todos();
+
+        todos.add(simpleTask);
+        todos.add(epic);
+        todos.add(meeting);
+        todos.add(meeting1);
+
+        Task[] expected = { simpleTask };
+        Task[] actual = todos.search("4");
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
 }
